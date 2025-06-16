@@ -4,6 +4,22 @@ import 'package:agritech/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/*
+  The SettingsScreen file defines the user interface for the "Settings" 
+  tab within the user profile. 
+  This StatelessWidget displays various user preferences, 
+  particularly focusing on notification and privacy settings. 
+  It uses SwitchListTile components to allow users to toggle SMS, email, 
+  and push notifications, and a standard ListTile with a Switch for profile 
+  visibility. 
+  All toggles are connected to the ProfileBloc via UpdateSettings events, 
+  ensuring that changes to user preferences are reflected in the application's 
+  state.
+  The screen is structured with clear section titles and containers for a clean, 
+  organized presentation of settings options, and includes an example ListTile 
+  for managing blocked users.
+ */
+
 class SettingsScreen extends StatelessWidget {
 
   const SettingsScreen({required this.profile, super.key});
