@@ -1,6 +1,25 @@
+/*
+  The Profile class serves as an immutable data model, acting as a comprehensive 
+  blueprint for all user profile information within the application.
+  It consolidates diverse data points such as personal details (like fullName, e
+  mailAddress, location), farming-specific metrics (e.g., acresInFarm, primaryCrops, 
+  farmingExperienceYears), performance statistics (totalCrops, yieldPerformanceValue, 
+  totalRevenue), and user preferences (notificationPreferencesEnabled, 
+  profileVisibilityEnabled).
+  All its fields are declared as final, ensuring that once a Profile object is 
+  created with its constructor, which accepts required core details and applies 
+  sensible default values for optional fields, its internal state cannot be 
+  directly altered.
+  This immutability is crucial for consistent state management, as any 
+  modification to a user's profile necessitates the creation of a new Profile 
+  instance; this is efficiently handled by the copyWith method, which allows 
+  developers to produce a new object with specific updated values while inheriting 
+  all other data from the original, thereby maintaining data integrity across the 
+  application.
 
-class Profile { // E.g., "Visible to other farmers"
+ */
 
+class Profile {
   Profile({
     required this.fullName,
     required this.mobileNumber,
@@ -116,70 +135,48 @@ class Profile { // E.g., "Visible to other farmers"
     bool? profileVisibilityEnabled,
   }) {
     return Profile(
-      fullName: fullName ?? 
-      this.fullName,
-      mobileNumber: mobileNumber ?? 
-      this.mobileNumber,
-      emailAddress: emailAddress ?? 
-      this.emailAddress,
-      location: location ?? 
-      this.location,
-      memberSince: memberSince ?? 
-      this.memberSince,
-      premiumMemberStatus: premiumMemberStatus ?? 
-      this.premiumMemberStatus,
-      premiumMemberTagline: premiumMemberTagline ?? 
-      this.premiumMemberTagline,
-      acresInFarm: acresInFarm ?? 
-      this.acresInFarm,
-      farmingExperienceYears: farmingExperienceYears ?? 
-      this.farmingExperienceYears,
-      currentSeasonOverview: currentSeasonOverview ?? 
-      this.currentSeasonOverview,
-      lastHarvest: lastHarvest ?? 
-      this.lastHarvest,
-      nextPlanting: nextPlanting ?? 
-      this.nextPlanting,
-      primaryCrops: primaryCrops ?? 
-      this.primaryCrops,
-      equipmentAndTools: equipmentAndTools ?? 
-      this.equipmentAndTools,
-      totalCrops: totalCrops ?? 
-      this.totalCrops,
-      latestBatch: latestBatch ?? 
-      this.latestBatch,
-      latestBatchDaysAgo: latestBatchDaysAgo ?? 
-      this.latestBatchDaysAgo,
-      nextHarvestDaysAway: nextHarvestDaysAway ?? 
-      this.nextHarvestDaysAway,
-      yieldPerformanceValue: yieldPerformanceValue ?? 
-      this.yieldPerformanceValue,
-      yieldPerformanceUnit: yieldPerformanceUnit ?? 
-      this.yieldPerformanceUnit,
-      yieldPerformanceChange: yieldPerformanceChange ??
-       this.yieldPerformanceChange,
-      yieldPerformancePeriod: yieldPerformancePeriod ?? 
-      this.yieldPerformancePeriod,
-      wheatYield: wheatYield ?? 
-      this.wheatYield,
-      wheatYieldPeriod: wheatYieldPeriod ?? 
-      this.wheatYieldPeriod,
-      totalRevenue: totalRevenue ?? 
-      this.totalRevenue,
-      averagePerCrop: averagePerCrop ?? 
-      this.averagePerCrop,
-      sCgGrowth: sCgGrowth ?? 
-      this.sCgGrowth,
-      notificationPreferencesEnabled: notificationPreferencesEnabled ?? 
-      this.notificationPreferencesEnabled,
-      smsNotificationsEnabled: smsNotificationsEnabled ?? 
-      this.smsNotificationsEnabled,
-      emailNotificationsEnabled: emailNotificationsEnabled ?? 
-      this.emailNotificationsEnabled,
-      pushNotificationsEnabled: pushNotificationsEnabled ?? 
-      this.pushNotificationsEnabled,
-      profileVisibilityEnabled: profileVisibilityEnabled ?? 
-      this.profileVisibilityEnabled,
+      fullName: fullName ?? this.fullName,
+      mobileNumber: mobileNumber ?? this.mobileNumber,
+      emailAddress: emailAddress ?? this.emailAddress,
+      location: location ?? this.location,
+      memberSince: memberSince ?? this.memberSince,
+      premiumMemberStatus: premiumMemberStatus ?? this.premiumMemberStatus,
+      premiumMemberTagline: premiumMemberTagline ?? this.premiumMemberTagline,
+      acresInFarm: acresInFarm ?? this.acresInFarm,
+      farmingExperienceYears:
+          farmingExperienceYears ?? this.farmingExperienceYears,
+      currentSeasonOverview:
+          currentSeasonOverview ?? this.currentSeasonOverview,
+      lastHarvest: lastHarvest ?? this.lastHarvest,
+      nextPlanting: nextPlanting ?? this.nextPlanting,
+      primaryCrops: primaryCrops ?? this.primaryCrops,
+      equipmentAndTools: equipmentAndTools ?? this.equipmentAndTools,
+      totalCrops: totalCrops ?? this.totalCrops,
+      latestBatch: latestBatch ?? this.latestBatch,
+      latestBatchDaysAgo: latestBatchDaysAgo ?? this.latestBatchDaysAgo,
+      nextHarvestDaysAway: nextHarvestDaysAway ?? this.nextHarvestDaysAway,
+      yieldPerformanceValue:
+          yieldPerformanceValue ?? this.yieldPerformanceValue,
+      yieldPerformanceUnit: yieldPerformanceUnit ?? this.yieldPerformanceUnit,
+      yieldPerformanceChange:
+          yieldPerformanceChange ?? this.yieldPerformanceChange,
+      yieldPerformancePeriod:
+          yieldPerformancePeriod ?? this.yieldPerformancePeriod,
+      wheatYield: wheatYield ?? this.wheatYield,
+      wheatYieldPeriod: wheatYieldPeriod ?? this.wheatYieldPeriod,
+      totalRevenue: totalRevenue ?? this.totalRevenue,
+      averagePerCrop: averagePerCrop ?? this.averagePerCrop,
+      sCgGrowth: sCgGrowth ?? this.sCgGrowth,
+      notificationPreferencesEnabled:
+          notificationPreferencesEnabled ?? this.notificationPreferencesEnabled,
+      smsNotificationsEnabled:
+          smsNotificationsEnabled ?? this.smsNotificationsEnabled,
+      emailNotificationsEnabled:
+          emailNotificationsEnabled ?? this.emailNotificationsEnabled,
+      pushNotificationsEnabled:
+          pushNotificationsEnabled ?? this.pushNotificationsEnabled,
+      profileVisibilityEnabled:
+          profileVisibilityEnabled ?? this.profileVisibilityEnabled,
     );
   }
 }

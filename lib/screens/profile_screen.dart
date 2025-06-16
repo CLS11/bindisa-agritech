@@ -9,6 +9,21 @@ import 'package:agritech/screens/summary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+/*
+  The ProfileScreen file serves as the main entry point and orchestrator for 
+  the entire user profile section of the application.
+  This StatefulWidget integrates with the ProfileBloc to manage and display 
+  various aspects of the user's profile across multiple tabs. 
+  It utilizes a TabController to facilitate navigation between the 
+  "Personal Info," "Farming Details," "Statistics," and "Settings" screens, 
+  dynamically updating the app bar title based on the currently selected tab. 
+  The screen also features a persistent header displaying the user's name, 
+  avatar, and location, fetched from the Profile model through BlocBuilder to 
+  ensure UI updates react to state changes. 
+  Overall, ProfileScreen acts as the primary layout and navigation hub for 
+  the user's comprehensive profile experience.
+ */
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 

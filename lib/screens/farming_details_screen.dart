@@ -4,6 +4,23 @@ import 'package:agritech/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/*
+  The FarmingDetailsScreen file defines the user interface for the 
+  "Farming Details" tab within the overall profile screen. 
+  This StatefulWidget is responsible for displaying and allowing the user to 
+  update various farming-specific information, such as the acresInFarm, 
+  farmingExperienceYears, and primaryCrops, using TextFields and a 
+  DropdownButtonFormField. 
+  It initializes its controllers and selected values from the Profile model 
+  passed to it and integrates with the ProfileBloc by dispatching 
+  UpdateFarmingDetails events whenever an input field is modified, ensuring that 
+  the application's state remains synchronized. 
+  Additionally, it presents key farming overview details like "Current Season 
+  Overview," "Last Harvest," and "Next Planting" in distinct ListTile cards, 
+  along with a list of "Equipment & Tools," and provides an action button to 
+  "Add new farming data".
+ */
+
 class FarmingDetailsScreen extends StatefulWidget {
 
   const FarmingDetailsScreen({required this.profile, super.key});

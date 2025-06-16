@@ -6,6 +6,22 @@ import 'package:agritech/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/*
+  The PersonalInfoScreen file defines the user interface for the "Personal Info" 
+  tab within the overall profile screen.
+  This StatefulWidget is responsible for displaying and allowing the user to 
+  update their core personal details, such as full name, mobile number, email 
+  address, and location, using TextField widgets. 
+  It initializes these input fields with data from the Profile model passed to 
+  it and utilizes TextEditingControllers to manage user input. 
+  Crucially, any changes made by the user trigger UpdatePersonalInfo events 
+  that are dispatched to the ProfileBloc, ensuring that the application's 
+  state is always synchronized with the latest user input. 
+  The screen also includes a non-editable "Member Since" field, a dummy 
+  DropdownButton example, and a fixed "Bindisa Agritech" card at the bottom, 
+  providing a complete personal information view.
+ */
+
 
 class PersonalInfoScreen extends StatefulWidget {
 

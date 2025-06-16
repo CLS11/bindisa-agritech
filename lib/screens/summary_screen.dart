@@ -1,6 +1,23 @@
 import 'package:agritech/models/profile_model.dart';
 import 'package:flutter/material.dart';
 
+/*
+  The SummaryScreen file defines the user interface for the "Statistics" tab 
+  within the user profile, providing a visual overview of key farming 
+  performance and financial data. 
+  This StatelessWidget dynamically displays information fetched from the 
+  Profile model, including total crops, recent harvest details, and upcoming 
+  planting schedules. 
+  It meticulously presents yield performance with numerical values, units, 
+  and percentage changes, along with specific crop yields like wheat, all 
+  within clearly structured Card widgets and RichText for combined styling.
+  Additionally, the screen includes a dedicated section for "Revenue & Earning 
+  Tracking," detailing total revenue, average per crop earnings, and sales & 
+  customer growth, employing Dividers for visual separation, thereby offering 
+  a comprehensive and organized statistical summary of the user's agricultural 
+  activities. 
+ */
+
 class SummaryScreen extends StatelessWidget {
 
   const SummaryScreen({required this.profile, super.key});

@@ -3,6 +3,19 @@ import 'package:agritech/bloc/profile_state.dart';
 import 'package:agritech/models/profile_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/*
+  The ProfileBloc file orchestrates the state management for the user's profile,
+  extending Bloc to process ProfileEvents and emit ProfileStates.
+   Upon initialization, it's configured to handle various events like LoadProfile, 
+   which simulates fetching initial profile data, and UpdatePersonalInfo, 
+   UpdateFarmingDetails, or UpdateSettings, which trigger the update of specific
+   profile sections. 
+   For each event, the BLoC constructs a new, immutable ProfileState (e.g., 
+   ProfileLoaded with the updated Profile object or ProfileError in case of 
+   failure) and emits it, ensuring that the UI always reflects the most current 
+   and consistent profile data without direct mutation.
+ */
+
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc() : super(ProfileInitial()) {
     on<LoadProfile>(_onLoadProfile);
