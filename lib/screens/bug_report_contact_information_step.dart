@@ -92,22 +92,22 @@ class _ContactInformationStepState extends State<ContactInformationStep> {
             controller: _fullNameController,
             label: 'Full Name',
             hintText: 'Your full name',
+            isRequired: true,
           ),
           const SizedBox(height: 16),
           _buildTextFieldCard(
             controller: _emailAddressController,
-            label: 'Email Address*',
-            hintText: 'john.doe@agritech.com',
+            label: 'Email Address',
+            hintText: 'your.email@example.com',
             keyboardType: TextInputType.emailAddress,
             isRequired: true,
           ),
           const SizedBox(height: 16),
           _buildTextFieldCard(
             controller: _phoneNumberController,
-            label: 'Phone Number*',
+            label: 'Phone Number',
             hintText: '+91 98123 45678',
             keyboardType: TextInputType.phone,
-            isRequired: true,
           ),
           const SizedBox(height: 24),
           _buildWhatHappensNext(),
@@ -181,13 +181,23 @@ class _ContactInformationStepState extends State<ContactInformationStep> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.person,
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
+        ],
       ),
     );
   }
