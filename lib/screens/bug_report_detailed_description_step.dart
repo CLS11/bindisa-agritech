@@ -98,8 +98,7 @@ class _DetailedDescriptionStepState extends State<DetailedDescriptionStep> {
           _buildSectionTitle('Detailed Description'),
           _buildTextFieldCard(
             controller: _detailedDescriptionController,
-            label: 'Bug Description*',
-            hintText: 'Tell us more about the bug',
+            label: 'Bug Description',
             maxLines: 4,
             isRequired: true,
           ),
@@ -107,21 +106,19 @@ class _DetailedDescriptionStepState extends State<DetailedDescriptionStep> {
           _buildTextFieldCard(
             controller: _stepsToReproduceController,
             label: 'Steps to Reproduce',
-            hintText: 'Describe how we can reproduce the bug',
             maxLines: 4,
+            isRequired: true,
           ),
           const SizedBox(height: 16),
           _buildTextFieldCard(
             controller: _expectedBehaviorController,
             label: 'Expected Behavior',
-            hintText: 'What should have happened?',
             maxLines: 3,
           ),
           const SizedBox(height: 16),
           _buildTextFieldCard(
             controller: _actualBehaviorController,
             label: 'Actual Behavior',
-            hintText: 'What actually happened?',
             maxLines: 3,
           ),
           const SizedBox(height: 32),
@@ -179,13 +176,23 @@ class _DetailedDescriptionStepState extends State<DetailedDescriptionStep> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.rectangle_outlined,
+          ),
+          const SizedBox(
+            width: 6,
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+        ],
       ),
     );
   }

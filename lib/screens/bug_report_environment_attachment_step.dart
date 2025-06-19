@@ -201,13 +201,23 @@ class _EnvironmentAttachmentsStepState extends State<EnvironmentAttachmentsStep>
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.rectangle_outlined,
+          ),
+          const SizedBox(
+            width: 6,
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+        ],
       ),
     );
   }

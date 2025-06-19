@@ -77,25 +77,6 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        title: const Text(
-          'B U G  R E P O R T', 
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        backgroundColor: Colors.grey[100],
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back, 
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
       body: BlocConsumer<BugReportBloc, BugReportState>(
         listener: (context, state) {
           if (state.status == BugReportStatus.submitted) {
@@ -168,6 +149,8 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
   }
 
   Widget _buildBugReportHeader(int currentStep) {
+    const totalSteps = 4;
+    final progress = (currentStep + 1) / totalSteps;
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Container(
@@ -179,13 +162,23 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Bug Report',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              Row(
+              children: [
+                Image.asset(
+                  'assets/bug.png',
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                 const Text(
+                  'Bug Report',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
             Text(
@@ -196,11 +189,23 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
               ),
             ),
             const SizedBox(height: 12),
+            ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 8,
+              backgroundColor: Colors.white.withOpacity(0.3),
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
+          ),
+          const SizedBox(
+            height: 6,
+          ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  'Step ${currentStep + 1} of 4', 
+                  'Step ${currentStep + 1} of $totalSteps', 
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.9),
                     fontSize: 14,

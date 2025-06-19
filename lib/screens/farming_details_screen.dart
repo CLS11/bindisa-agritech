@@ -38,11 +38,11 @@ class _FarmingDetailsScreenState extends State<FarmingDetailsScreen> {
   late TextEditingController _nextPlantingController;
   String? _selectedCrop; // For dropdown
   final List<String> _cropOptions = [
-    'Rice',
-    'Wheat',
-    'Rice & Wheat',
-    'Corn',
-    'Soybeans'
+    '🍚 Rice'
+    '🌾 Wheat'
+    '🍚🌾 Rice & Wheat'
+    '🌽 Corn'
+    '🫘 Soybeans' 
   ]; // Dummy crop options
 
   @override
@@ -293,7 +293,7 @@ class _FarmingDetailsScreenState extends State<FarmingDetailsScreen> {
               color: Colors.green.shade50,
               child: ListTile(
                 title: const Text(
-                  'Current Season Overview',
+                  '📊 Current Season Overview',
                 ),
                 subtitle: Text(
                   _currentSeasonOverviewController.text,
@@ -381,7 +381,7 @@ class _FarmingDetailsScreenState extends State<FarmingDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Equipment & Tools',
+                      '🚜 Equipment & Tools',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey,
