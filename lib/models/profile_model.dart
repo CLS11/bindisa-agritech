@@ -51,6 +51,9 @@ class Profile {
     this.yieldPerformancePeriod = '<1yr',
     this.wheatYield = 3.3,
     this.wheatYieldPeriod = '2023-24',
+    this.riceYield = 4.2,
+    this.riceAcres = 3.2,
+    this.riceYieldChange = 12.0,
     this.totalRevenue = 87,
     this.averagePerCrop = 90,
     this.sCgGrowth = 15.2,
@@ -87,6 +90,9 @@ class Profile {
   final String yieldPerformanceUnit;
   final double yieldPerformanceChange; // e.g., 4.2% up
   final String yieldPerformancePeriod; // e.g., <1yr
+  final double riceYield;
+  final double riceAcres;
+  final double riceYieldChange;
   final double wheatYield;
   final String wheatYieldPeriod;
   final double totalRevenue;
@@ -125,6 +131,9 @@ class Profile {
     String? yieldPerformancePeriod,
     double? wheatYield,
     String? wheatYieldPeriod,
+    double? riceYield,
+    double? riceAcres,
+    double? riceYieldChange,
     double? totalRevenue,
     double? averagePerCrop,
     double? sCgGrowth,
@@ -164,6 +173,9 @@ class Profile {
           yieldPerformancePeriod ?? this.yieldPerformancePeriod,
       wheatYield: wheatYield ?? this.wheatYield,
       wheatYieldPeriod: wheatYieldPeriod ?? this.wheatYieldPeriod,
+      riceYield: riceYield ?? this.riceYield,
+      riceAcres: riceAcres ?? this.riceAcres,
+      riceYieldChange: riceYieldChange ?? this.riceYieldChange,
       totalRevenue: totalRevenue ?? this.totalRevenue,
       averagePerCrop: averagePerCrop ?? this.averagePerCrop,
       sCgGrowth: sCgGrowth ?? this.sCgGrowth,
