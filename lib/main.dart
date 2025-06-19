@@ -30,7 +30,7 @@ class AgriTech extends StatelessWidget {
             create: (context) => BugReportBloc(), // Provide BugReportBloc
           ),
         ], 
-        child: const BugReportMainScreen(),
+        child: const ProfileScreen(),
       ),
     );
   }
