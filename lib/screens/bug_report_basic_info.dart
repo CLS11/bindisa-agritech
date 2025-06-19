@@ -100,8 +100,8 @@ class _BasicInfoStepState extends State<BasicInfoStep> {
           const SizedBox(height: 16),
           _buildTextFieldCard(
             controller: _sprintToLoanController,
-            label: 'Sprint to LOAN*',
-            hintText: 'e.g., 2024-Q3-Sprint 2',
+            label: 'Severity Level*',
+            hintText: null,
           ),
           const SizedBox(height: 16),
           _buildDropdownCard(
@@ -154,13 +154,25 @@ class _BasicInfoStepState extends State<BasicInfoStep> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.info_outline, 
+            color: Colors.grey.shade600, 
+            size: 20,
+          ),
+          const SizedBox(
+            width: 6,
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -363,24 +375,24 @@ class _BasicInfoStepState extends State<BasicInfoStep> {
             size: 20,
           ),
           const SizedBox(width: 8),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Bug Status',
+                  'Quick Status',
                   style: TextStyle(
-                    color: Colors.grey.shade800,
+                    color: Colors.green,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                   ),
                 ),
-                const SizedBox(height: 4),
+                 SizedBox(height: 4),
                 Text(
-                  'All updates on your report are viewed by a team 2-3 hours',
+                  'All systems operational. Response time: 2-4 hours',
                   style: TextStyle(
                     fontSize: 13, 
-                    color: Colors.grey.shade600,
+                    color: Colors.green,
                   ),
                 ),
               ],
