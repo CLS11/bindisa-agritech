@@ -19,354 +19,310 @@ import 'package:flutter/material.dart';
  */
 
 class SummaryScreen extends StatelessWidget {
-
   const SummaryScreen({required this.profile, super.key});
   final Profile profile;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// Total Crops
+          _statCard(
+            title: 'Total Crops',
+            emoji: '🌾',
+            value: '${profile.totalCrops}',
+            subtitle: 'This year',
+            background: Colors.blue.shade50,
+          ),
+          const SizedBox(height: 12),
+
+          /// Active Season
+          _statCard(
+            title: 'Active Season',
+            emoji: '🚜',
+            value: 'Kharif 2024',
+            subtitle: 'Current',
+            background: Colors.green.shade50,
+          ),
+          const SizedBox(height: 12),
+
+          /// Last Harvest
+          _statCard(
+            title: 'Last Harvest',
+            emoji: '📦',
+            value: profile.latestBatchDaysAgo,
+            subtitle: 'Completed',
+            background: Colors.yellow.shade100,
+          ),
+          const SizedBox(height: 12),
+
+          /// Next Planting
+          _statCard(
+            title: 'Next Planting',
+            emoji: '⏰',
+            value: profile.nextHarvestDaysAway,
+            subtitle: 'Scheduled',
+            background: Colors.pink.shade100,
+          ),
+          const SizedBox(height: 16),
+
+          /// Yield Performance Section
+          _yieldPerformanceSection(profile),
+
+          const SizedBox(height: 16),
+
+          /// Revenue Tracking Section
+          _revenueTrackingSection(profile),
+
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _statCard({
+    required String title,
+    required String emoji,
+    required String value,
+    required String subtitle,
+    required Color background,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Text(
+            emoji, 
+            style: const TextStyle(
+              fontSize: 24,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                    style: const TextStyle(
+                        fontSize: 13, 
+                        color: Colors.grey, 
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                const SizedBox(height: 4),
+                Text(
+                  value,
+                    style: const TextStyle(
+                        fontSize: 18, 
+                        fontWeight: FontWeight.bold, 
+                        color: Colors.black,
+                      ),
+                    ),
+                Text(
+                  subtitle,
+                    style: TextStyle(
+                      fontSize: 12, 
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _yieldPerformanceSection(Profile profile) {
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Total Crops Card
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Total Crops',
-                      style: TextStyle(
-                        fontSize: 14, 
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      profile.totalCrops.toString(),
-                      style: const TextStyle(
-                        fontSize: 32, 
-                        fontWeight: FontWeight.bold, 
-                        color: Colors.green,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8, 
-                        vertical: 4,
-                        ),
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade50,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Text(
-                        profile.latestBatch,
-                        style: TextStyle(
-                          color: Colors.green.shade800, 
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
+            const Text(
+              '📊 Yield Performance',
+                style: TextStyle(
+                  fontSize: 14, 
+                  color: Colors.grey,
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
-            // Latest Batch and Next Harvest
-            Row(
-              children: [
-                Expanded(
-                  child: Card(
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    color: Colors.orange.shade50,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            profile.latestBatchDaysAgo,
-                            style: TextStyle(
-                              color: Colors.orange.shade800, 
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          const Text(
-                            'Last Harvest',
-                            style: TextStyle(
-                              fontSize: 12, 
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Card(
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    color: Colors.pink.shade50,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            profile.nextHarvestDaysAway,
-                            style: TextStyle(
-                              color: Colors.pink.shade800, 
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          const Text(
-                            'Next Harvest',
-                            style: TextStyle(
-                              fontSize: 12, 
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            /// Rice
+            _yieldRow(
+                crop: 'Rice (Kharif 2024)',
+                yieldValue: '${profile.riceYield.toStringAsFixed(1)} tons',
+                acres: '${profile.riceAcres.toStringAsFixed(1)} acres',
+                change: '${profile.riceYieldChange >= 0 ? '+' : ''}${
+                  profile.riceYieldChange.toStringAsFixed(1)}% vs last year',
+                isNegative: profile.riceYieldChange < 0,
             ),
-            const SizedBox(height: 16),
 
-            // Yield Performance
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Yield Performance',
-                      style: TextStyle(
-                        fontSize: 14, 
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: '${profile.yieldPerformanceValue}',
-                                style: const TextStyle(
-                                  fontSize: 24, 
-                                  fontWeight: FontWeight.bold, 
-                                  color: Colors.black87,
-                                ),
-                              ),
-                              TextSpan(
-                                text: ' ${profile.yieldPerformanceUnit}',
-                                style: const TextStyle(
-                                  fontSize: 16, 
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8, 
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.green.shade100,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_upward, 
-                                color: Colors.green.shade800, 
-                                size: 16,
-                              ),
-                              Text(
-                                '${profile.yieldPerformanceChange.toStringAsFixed(1)}%',
-                                style: TextStyle(
-                                  color: Colors.green.shade800, 
-                                  fontSize: 12,
-                                ),
-                              ),
-                              Text(
-                                ' ${profile.yieldPerformancePeriod}',
-                                style: TextStyle(
-                                  color: Colors.grey.shade600, 
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    const Divider(),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Wheat (Rabi 2023-24)',
-                          style: TextStyle(
-                            fontSize: 14, 
-                            color: Colors.black87,
-                          ),
-                        ),
-                        Text(
-                          '${profile.wheatYield} t/acre',
-                          style: const TextStyle(
-                            fontSize: 14, 
-                            color: Colors.black87, 
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
-            // Revenue & Earning Tracking
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Revenue & Earning Tracking',
-                      style: TextStyle(
-                        fontSize: 14, 
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Total Revenue (2023)',
-                          style: TextStyle(
-                            fontSize: 16, 
-                            color: Colors.black87,
-                          ),
-                        ),
-                        Text(
-                          '₹${profile.totalRevenue.toStringAsFixed(0)}',
-                          style: const TextStyle(
-                            fontSize: 16, 
-                            fontWeight: FontWeight.bold, 
-                            color: Colors.green,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Average per crop',
-                          style: TextStyle(
-                            fontSize: 16, 
-                            color: Colors.black87,
-                          ),
-                        ),
-                        Text(
-                          '₹${profile.averagePerCrop.toStringAsFixed(0)}',
-                          style: const TextStyle(
-                            fontSize: 16, 
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'S&CG Growth',
-                          style: TextStyle(
-                            fontSize: 16, 
-                            color: Colors.black87,
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8, 
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.green.shade100,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_upward, 
-                                color: Colors.green.shade800, 
-                                size: 16,
-                              ),
-                              Text(
-                                '${profile.sCgGrowth.toStringAsFixed(1)}%',
-                                style: TextStyle(
-                                  color: Colors.green.shade800, 
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+            /// Wheat
+            _yieldRow(
+              crop: 'Wheat (Rabi 2023-24)',
+              yieldValue: '${profile.wheatYield} tons',
+              acres: '2.0 acres',
+              change: '-8% vs last year',
+              isNegative: true,
             ),
-            const SizedBox(height: 20),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _yieldRow({
+    required String crop,
+    required String yieldValue,
+    required String acres,
+    required String change,
+    bool isNegative = false,
+  }) {
+    final color = isNegative ? Colors.red : Colors.green;
+    final icon = isNegative ? Icons.arrow_downward : Icons.arrow_upward;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          crop,
+            style: const TextStyle(
+                fontWeight: FontWeight.w500, 
+                fontSize: 14, 
+                color: Colors.black87,
+              ),
+            ),
+        const SizedBox(height: 4),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              acres,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
+              ),
+            Row(
+              children: [
+                Text(
+                  yieldValue,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Colors.black),
+                ),
+                const SizedBox(width: 6),
+                Icon(
+                  icon, 
+                  size: 16, 
+                  color: color,
+                ),
+                Text(
+                  change,
+                    style: TextStyle(
+                      fontSize: 12, 
+                      color: color,
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _revenueTrackingSection(Profile profile) {
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '💰 Revenue Tracking',
+                style: TextStyle(
+                  fontSize: 14, 
+                  color: Colors.grey,
+                ),
+              ),
+            const SizedBox(height: 12),
+            _revenueRow(
+              'Total Revenue (2024)',
+              '₹${profile.totalRevenue.toStringAsFixed(0)}',
+              bold: true, 
+              color: Colors.green.shade700,
+            ),
+            const Divider(),
+            _revenueRow(
+              'Average per acre',
+              '₹${profile.averagePerCrop.toStringAsFixed(0)}',
+            ),
+            const Divider(),
+            _revenueRow('Growth vs 2023',
+                '+${profile.sCgGrowth.toStringAsFixed(1)}%',
+                icon: Icons.arrow_upward,
+                iconColor: Colors.green.shade700,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _revenueRow(String title, String value,
+      {bool bold = false, IconData? icon, Color? iconColor, Color? color}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(title,
+            style:
+              const TextStyle(
+                fontSize: 14, 
+                color: Colors.black87,
+                ),
+              ),
+        Row(
+          children: [
+            if (icon != null)
+              Icon(
+                icon, 
+                size: 16, 
+                color: iconColor ?? Colors.black54,
+              ),
+            const SizedBox(width: 4),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+                color: iconColor ?? Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
