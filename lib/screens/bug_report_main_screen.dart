@@ -11,7 +11,6 @@ import 'package:agritech/screens/bug_report_submitted_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 /*
   The BugReportMainScreen file orchestrates the multi-step bug reporting process, 
   acting as a container and navigator for the different input screens.
@@ -56,7 +55,7 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
   }
 
   void _nextPage() {
-    if (_pageController.page! < 4) { 
+    if (_pageController.page! < 4) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
@@ -89,10 +88,12 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
           }
         },
         builder: (context, state) {
-          if (state.status == BugReportStatus.loading && state.currentStep == 4) {
+          if (state.status == BugReportStatus.loading &&
+              state.currentStep == 4) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (state.errorMessage != null && state.status == BugReportStatus.error) {
+          if (state.errorMessage != null &&
+              state.status == BugReportStatus.error) {
             return Center(child: Text('Error: ${state.errorMessage}'));
           }
 
@@ -102,10 +103,12 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
               Expanded(
                 child: PageView(
                   controller: _pageController,
-                  physics: const NeverScrollableScrollPhysics(), // Disable swipe
+                  physics:
+                      const NeverScrollableScrollPhysics(), // Disable swipe
                   onPageChanged: (index) {
-                    // Update the current step in the BLoC if needed, though not strictly necessary
-                    // as we're controlling page navigation with buttons
+                    context.read<BugReportBloc>().add(
+                      UpdateBugReportStep(index),
+                    );
                   },
                   children: [
                     BasicInfoStep(
@@ -162,15 +165,11 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-              Row(
+            Row(
               children: [
-                Image.asset(
-                  'assets/bug.png',
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                 const Text(
+                Image.asset('assets/bug.png'),
+                const SizedBox(width: 10),
+                const Text(
                   'Bug Report',
                   style: TextStyle(
                     color: Colors.white,
@@ -190,22 +189,20 @@ class _BugReportMainScreenState extends State<BugReportMainScreen> {
             ),
             const SizedBox(height: 12),
             ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: LinearProgressIndicator(
-              value: progress,
-              minHeight: 8,
-              backgroundColor: Colors.white.withOpacity(0.3),
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+              borderRadius: BorderRadius.circular(20),
+              child: LinearProgressIndicator(
+                value: progress,
+                minHeight: 8,
+                backgroundColor: Colors.white.withOpacity(0.3),
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 6,
-          ),
+            const SizedBox(height: 6),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  'Step ${currentStep + 1} of $totalSteps', 
+                  'Step ${currentStep + 1} of $totalSteps',
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.9),
                     fontSize: 14,
