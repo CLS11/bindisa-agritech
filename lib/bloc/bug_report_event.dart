@@ -85,6 +85,11 @@ class UpdateEnvironmentAttachments extends BugReportEvent {
       ];
 }
 
+class UpdateBugReportStep extends BugReportEvent {
+  const UpdateBugReportStep(this.stepIndex);
+  final int stepIndex;
+}
+
 class UpdateContactInfo extends BugReportEvent {
 
   const UpdateContactInfo({this.fullName, this.emailAddress, this.phoneNumber});
