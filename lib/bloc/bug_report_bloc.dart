@@ -29,6 +29,9 @@ class BugReportBloc extends Bloc<BugReportEvent, BugReportState> {
     on<UpdateContactInfo>(_onUpdateContactInfo);
     on<SubmitBugReport>(_onSubmitBugReport);
     on<ResetBugReport>(_onResetBugReport);
+    on<UpdateBugReportStep>((event, emit) {
+      emit(state.copyWith(currentStep: event.stepIndex));
+    });
   }
 
   void _onStartBugReport(StartBugReport event, Emitter<BugReportState> emit) {
