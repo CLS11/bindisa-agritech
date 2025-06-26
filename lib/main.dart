@@ -1,7 +1,11 @@
 import 'package:agritech/bloc/bug_report_bloc.dart';
+import 'package:agritech/bloc/chat_message_bloc.dart';
+import 'package:agritech/bloc/notification_bloc.dart';
 import 'package:agritech/bloc/profile_bloc.dart';
 import 'package:agritech/bloc/profile_event.dart';
 import 'package:agritech/screens/bug_report_main_screen.dart';
+import 'package:agritech/screens/help_support_screen.dart';
+import 'package:agritech/screens/notifications_screen.dart';
 import 'package:agritech/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,8 +33,14 @@ class AgriTech extends StatelessWidget {
           BlocProvider(
             create: (context) => BugReportBloc(), // Provide BugReportBloc
           ),
+          BlocProvider(
+            create: (context) => NotificationBloc(), // Provide NotificationBloc
+          ),
+          BlocProvider(
+            create: (context) => ChatBloc(), // Provide ChatBloc
+          ),
         ], 
-        child: const ProfileScreen(),
+        child: const HelpSupportScreen(),
       ),
     );
   }
