@@ -3,6 +3,7 @@ import 'package:agritech/bloc/chat_message_bloc.dart';
 import 'package:agritech/bloc/notification_bloc.dart';
 import 'package:agritech/bloc/profile_bloc.dart';
 import 'package:agritech/bloc/profile_event.dart';
+import 'package:agritech/bloc/video_bloc.dart';
 import 'package:agritech/screens/bug_report_main_screen.dart';
 import 'package:agritech/screens/help_support_screen.dart';
 import 'package:agritech/screens/notifications_screen.dart';
@@ -38,6 +39,9 @@ class AgriTech extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ChatBloc(), // Provide ChatBloc
+          ),
+          BlocProvider(
+            create: (context) => VideoBloc(), // Provide VideoBloc
           ),
         ], 
         child: const HelpSupportScreen(),
