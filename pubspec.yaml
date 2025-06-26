@@ -38,6 +38,7 @@ dependencies:
   equatable: ^2.0.5 
   uuid: ^4.5.1
   image_picker: ^1.1.2
+  intl: 
 
 dev_dependencies:
   flutter_test:
