@@ -71,7 +71,7 @@ class _VideoTutorialScreenState extends State<VideoTutorialScreen> {
             // Extract unique categories for filter chips
             final categories = ['All'] + state.allVideos.map((e) => e.category).
             toSet().toList();
-
+      
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +121,7 @@ class _VideoTutorialScreenState extends State<VideoTutorialScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-
+      
                   // Live Chat, Video Tutorials, FAQs - Reused from HelpSupportScreen for consistency
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -154,46 +154,48 @@ class _VideoTutorialScreenState extends State<VideoTutorialScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-
+      
                   // Header "Video Tutorials"
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.play_circle_outline, 
-                              color: Colors.black87,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              'Video Tutorials',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold, 
-                                fontSize: 16,
+                        SafeArea(
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.play_circle_outline, 
+                                color: Colors.black87,
                               ),
-                            ),
-                            const Spacer(),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10, 
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.green.shade100,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                'Load complete for platform with step-by-step',
+                              const SizedBox(width: 8),
+                              const Text(
+                                'Video Tutorials',
                                 style: TextStyle(
-                                  color: Colors.green.shade700, 
-                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold, 
+                                  fontSize: 16,
                                 ),
                               ),
-                            ),
-                          ],
+                              const Spacer(),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, 
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.green.shade100,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  'Load complete for platform with step-by-step',
+                                  style: TextStyle(
+                                    color: Colors.green.shade700, 
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 8),
                         const Text(
@@ -207,7 +209,7 @@ class _VideoTutorialScreenState extends State<VideoTutorialScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-
+      
                   // Filter Chips
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -247,7 +249,7 @@ class _VideoTutorialScreenState extends State<VideoTutorialScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-
+      
                   // Video List
                   ListView.builder(
                     shrinkWrap: true,
@@ -259,7 +261,7 @@ class _VideoTutorialScreenState extends State<VideoTutorialScreen> {
                     },
                   ),
                   const SizedBox(height: 16),
-
+      
                   // Quick Start Guide
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
