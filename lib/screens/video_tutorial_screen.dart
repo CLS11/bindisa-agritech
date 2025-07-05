@@ -324,15 +324,19 @@ class _VideoTutorialScreenState extends State<VideoTutorialScreen> {
     VoidCallback onTap,
     ) {
     return ListTile(
-      leading: Icon(
-        icon, 
-        color: Colors.black87,
-      ),
-      title: Text(
-        title, 
-        style: const TextStyle(
-          fontSize: 16, 
+      leading: Center(
+        child: Icon(
+          icon, 
           color: Colors.black87,
+        ),
+      ),
+      title: Center(
+        child: Text(
+          title, 
+          style: const TextStyle(
+            fontSize: 16, 
+            color: Colors.black87,
+          ),
         ),
       ),
       trailing: const Icon(

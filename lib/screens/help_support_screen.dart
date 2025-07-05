@@ -3,7 +3,7 @@ import 'package:agritech/bloc/chat_message_event.dart';
 import 'package:agritech/bloc/chat_message_state.dart';
 import 'package:agritech/bloc/video_bloc.dart';
 import 'package:agritech/models/chat_message_model.dart';
-import 'package:agritech/models/video_tutorial_model.dart'; 
+import 'package:agritech/models/video_tutorial_model.dart';
 import 'package:agritech/screens/video_tutorial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,10 +36,9 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
 
   void _sendMessage() {
     if (_messageController.text.trim().isNotEmpty) {
-      context.read<ChatBloc>().add(SendMessage(
-        message: _messageController.text.trim(),
-        sender: 'user',
-      ));
+      context.read<ChatBloc>().add(
+        SendMessage(message: _messageController.text.trim(), sender: 'user'),
+      );
       _messageController.clear();
       _scrollToBottom();
     }
@@ -61,21 +60,16 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
     final videoBloc = BlocProvider.of<VideoBloc>(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: const Color.fromARGB(255, 197, 211, 221),
       appBar: AppBar(
         title: const Text(
-          'Live Support Chat', 
-          style: TextStyle(
-            color: Colors.black,
-          ),
+          'Live Support Chat',
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.grey[100],
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back, 
-            color: Colors.black,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -90,38 +84,38 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade600,
+                  color: const Color.fromARGB(255, 197, 211, 221),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Column(
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.spa, 
-                          color: Colors.white, 
-                          size: 30,
+                    Center(
+                      child: Text(
+                        '🌱', 
+                        style: TextStyle(
+                          fontSize: 30,
                         ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Help & Support',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Get the help you need to make the most of Bindisa Agritech',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
-                        fontSize: 14,
+                    SizedBox(height: 12),
+                    Center(
+                      child: Text(
+                        'Help & Support',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Center(
+                      child: Text(
+                        'Get the help you need to make the most of Bindisa Agritech',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
                     ),
                   ],
@@ -129,7 +123,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
               ),
             ),
             const SizedBox(height: 16),
-        
+
             // Live Chat, Video Tutorials, FAQs
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -140,31 +134,28 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                 ),
                 child: Column(
                   children: [
-                    _buildSupportOption(
-                      Icons.chat_outlined, 
-                      'Live Chat', () {
+                    _buildSupportOption(Icons.chat_outlined, 'Live Chat', () {
                       // Handle Live Chat tap
-                    },
-                  ),
+                    }),
                     const Divider(height: 1),
                     _buildSupportOption(
-                      Icons.play_circle_outline, 
-                      'Video Tutorials', () {
-                      // Pass the obtained videoBloc instance directly
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => BlocProvider.value(
-                            value: videoBloc, // Use the explicitly obtained videoBloc
-                            child: const VideoTutorialScreen(),
+                      Icons.play_circle_outline,
+                      'Video Tutorials',
+                      () {
+                        // Pass the obtained videoBloc instance directly
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider.value(
+                              value:
+                                  videoBloc, // Use the explicitly obtained videoBloc
+                              child: const VideoTutorialScreen(),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
+                        );
+                      },
+                    ),
                     const Divider(height: 1),
-                    _buildSupportOption(
-                      Icons.help_outline, 
-                      'FAQs', () {
+                    _buildSupportOption(Icons.help_outline, 'FAQs', () {
                       // Handle FAQs tap
                     }),
                   ],
@@ -172,7 +163,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
               ),
             ),
             const SizedBox(height: 16),
-        
+
             // Chat with Support Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -188,22 +179,24 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                       padding: const EdgeInsets.all(16),
                       child: Row(
                         children: [
-                          const Icon(
-                            Icons.chat_bubble_outline, 
-                            color: Colors.black87,
+                          Image.asset(
+                            'assets/chat-bubble.png',
+                            height: 52,
+                            width: 52,
                           ),
+
                           const SizedBox(width: 8),
                           const Text(
-                            'Chat with Support',
+                            ' Chat with Support',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold, 
+                              fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
                           ),
                           const Spacer(),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 10, 
+                              horizontal: 10,
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
@@ -213,7 +206,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                             child: Text(
                               'Online',
                               style: TextStyle(
-                                color: Colors.green.shade700, 
+                                color: Colors.green.shade700,
                                 fontSize: 12,
                               ),
                             ),
@@ -223,15 +216,12 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 16, 
+                        horizontal: 16,
                         vertical: 4,
                       ),
                       child: Text(
                         'Our support team is available 24/7 to help you',
-                        style: TextStyle(
-                          color: Colors.grey, 
-                          fontSize: 13,
-                        ),
+                        style: TextStyle(color: Colors.grey, fontSize: 13),
                       ),
                     ),
                     const Divider(height: 1),
@@ -277,8 +267,8 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: message.sender == 
-                                      'user'
+                                      crossAxisAlignment:
+                                          message.sender == 'user'
                                           ? CrossAxisAlignment.end
                                           : CrossAxisAlignment.start,
                                       children: [
@@ -294,7 +284,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                                         Text(
                                           message.timestamp,
                                           style: const TextStyle(
-                                            fontSize: 10, 
+                                            fontSize: 10,
                                             color: Colors.grey,
                                           ),
                                         ),
@@ -326,7 +316,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                                 filled: true,
                                 fillColor: Colors.grey.shade100,
                                 contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16, 
+                                  horizontal: 16,
                                   vertical: 12,
                                 ),
                               ),
@@ -339,7 +329,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green.shade600,
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 20, 
+                                horizontal: 20,
                                 vertical: 12,
                               ),
                               shape: RoundedRectangleBorder(
@@ -347,10 +337,8 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                               ),
                             ),
                             child: const Text(
-                              'Send', 
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
+                              'Send',
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ],
@@ -361,7 +349,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
               ),
             ),
             const SizedBox(height: 16),
-        
+
             // Featured Video Tutorial Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -373,8 +361,8 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                     child: Text(
                       'Featured Video Tutorial',
                       style: TextStyle(
-                        fontSize: 16, 
-                        fontWeight: FontWeight.bold, 
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
@@ -383,17 +371,19 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                     const VideoTutorial(
                       id: 'featured-video',
                       title: 'Getting Started with Bindisa Agritech',
-                      description: 'Learn how to register for platform with step-by-step.',
+                      description:
+                          'Learn how to register for platform with step-by-step.',
                       duration: '0:15',
                       category: 'Getting Started',
-                      thumbnailUrl: 'https://placehold.co/400x200/000000/FFFFFF?text=Getting+Started',
+                      thumbnailUrl:
+                          'https://placehold.co/400x200/000000/FFFFFF?text=Getting+Started',
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 16),
-        
+
             // Call Support, Email Support, Response Time
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -410,25 +400,27 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                       'Speak directly with our experts',
                       '1800-123-4567',
                       Colors.green.shade50,
-                      Colors.green.shade800,
+                      Colors.black,
                     ),
                     const Divider(height: 1),
+                    const SizedBox(height: 3),
                     _buildContactInfoCard(
                       Icons.mail_outline,
                       'Email Support',
                       'Send us detailed queries',
                       'support@bindisa.com',
                       Colors.orange.shade50,
-                      Colors.orange.shade800,
+                      Colors.black,
                     ),
                     const Divider(height: 1),
+                    const SizedBox(height: 3),
                     _buildContactInfoCard(
                       Icons.access_time,
                       'Response Time',
                       'Average response time',
                       '< 2 hours',
                       Colors.blue.shade50,
-                      Colors.blue.shade800,
+                      Colors.black,
                     ),
                   ],
                 ),
@@ -441,29 +433,32 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
     );
   }
 
-  Widget _buildSupportOption(
-    IconData icon, 
-    String title, 
-    VoidCallback onTap,
-  ) {
-    return ListTile(
-      leading: Icon(
-        icon, 
-        color: Colors.black87,
-      ),
-      title: Text(
-        title, 
-        style: const TextStyle(
-          fontSize: 16,
-          color: Colors.black87,
+  Widget _buildSupportOption(IconData icon, String title, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: Colors.black,
+              size: 18, // Smaller size
+              weight: 200, // Less bold, if using icons with weight
+            ),
+            const SizedBox(width: 8),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 15,
+                color: Colors.black87,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
         ),
       ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios, 
-        size: 16, 
-        color: Colors.grey,
-      ),
-      onTap: onTap,
     );
   }
 
@@ -486,11 +481,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
               color: backgroundColor,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
-              icon, 
-              color: valueColor, 
-              size: 24,
-            ),
+            child: Icon(icon, color: valueColor, size: 24),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -500,25 +491,22 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 16, 
-                    fontWeight: FontWeight.bold, 
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 3),
                 Text(
                   subtitle,
-                  style: const TextStyle(
-                    fontSize: 13, 
-                    color: Colors.grey,
-                  ),
+                  style: const TextStyle(fontSize: 13, color: Colors.grey),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 4),
                 Text(
                   value,
-                  style: TextStyle(
-                    fontSize: 15, 
-                    color: valueColor, 
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.green,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -553,9 +541,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                   height: 150,
                   color: Colors.grey.shade300,
                   child: Center(
-                    child: Text(
-                      'Image failed to load: ${video.title}',
-                    ),
+                    child: Text('Image failed to load: ${video.title}'),
                   ),
                 ),
               ),
@@ -566,8 +552,8 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: const Icon(
-                  Icons.play_arrow, 
-                  color: Colors.white, 
+                  Icons.play_arrow,
+                  color: Colors.white,
                   size: 40,
                 ),
               ),
@@ -581,25 +567,22 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                 Text(
                   video.title,
                   style: const TextStyle(
-                    fontSize: 18, 
-                    fontWeight: FontWeight.bold, 
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   video.description,
-                  style: const TextStyle(
-                    fontSize: 14, 
-                    color: Colors.grey,
-                  ),
+                  style: const TextStyle(fontSize: 14, color: Colors.grey),
                 ),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 8, 
+                      horizontal: 8,
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
@@ -609,7 +592,7 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                     child: Text(
                       video.duration,
                       style: TextStyle(
-                        color: Colors.green.shade800, 
+                        color: Colors.green.shade800,
                         fontSize: 12,
                       ),
                     ),
