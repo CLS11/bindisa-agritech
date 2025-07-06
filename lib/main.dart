@@ -1,12 +1,14 @@
 import 'package:agritech/bloc/approval_bloc.dart';
 import 'package:agritech/bloc/bug_report_bloc.dart';
 import 'package:agritech/bloc/chat_message_bloc.dart';
+import 'package:agritech/bloc/investigation_bloc.dart';
 import 'package:agritech/bloc/notification_bloc.dart';
 import 'package:agritech/bloc/profile_bloc.dart';
 import 'package:agritech/bloc/profile_event.dart';
 import 'package:agritech/bloc/video_bloc.dart';
 import 'package:agritech/screens/approval_flags_screen.dart';
 import 'package:agritech/screens/bug_report_main_screen.dart';
+import 'package:agritech/screens/flag_investigation_screen.dart';
 import 'package:agritech/screens/help_support_screen.dart';
 import 'package:agritech/screens/notifications_screen.dart';
 import 'package:agritech/screens/profile_screen.dart';
@@ -48,8 +50,11 @@ class AgriTech extends StatelessWidget {
           BlocProvider(
             create: (context) => ApprovalBloc(), // Provide ApprovalBloc
           ),
+          BlocProvider(
+            create: (context) => InvestigationBloc(), // Provide InvestigationBloc
+          ),
         ], 
-        child: const ApprovalFlagsScreen(),
+        child: const FlagInvestigationScreen(investigationId: '',),
       ),
     );
   }
