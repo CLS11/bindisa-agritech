@@ -3,7 +3,9 @@
 import 'package:agritech/bloc/approval_bloc.dart';
 import 'package:agritech/bloc/approval_event.dart';
 import 'package:agritech/bloc/approval_state.dart';
+import 'package:agritech/bloc/investigation_bloc.dart';
 import 'package:agritech/models/approval_flag_model.dart';
+import 'package:agritech/screens/flag_investigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +14,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
   and dynamically presenting a list of approval/flag items that update based on 
   the ApprovalBloc's state, with distinct colors for different approval types 
   and actions to modify item statuses.
+  This Canvas, which displays a list of approval and flag items, has been 
+  updated to include an "Investigate" button for flagged items; when pressed, 
+  this button now navigates the user to the FlagInvestigationScreen, passing the 
+  relevant InvestigationBloc instance and the item's ID for detailed 
+  investigation.
  */
 
 class ApprovalFlagsScreen extends StatefulWidget {
@@ -387,16 +394,23 @@ class _ApprovalFlagsScreenState extends State<ApprovalFlagsScreen> {
                   ] else if (item.status == ApprovalStatus.flagged) ...[
                     OutlinedButton(
                       onPressed: () {
-                        context.read<ApprovalBloc>().add(
-                          UpdateApprovalFlagStatus(
-                            itemId: item.id,
-                            newStatus: ApprovalStatus.investigate,
+                        // Navigate to FlagInvestigationScreen when Investigate is pressed
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider.value(
+                              value: BlocProvider.of<InvestigationBloc>(context),
+                              child: FlagInvestigationScreen(
+                                investigationId: item.id,
+                              ),
+                            ),
                           ),
                         );
                       },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.orange,
-                        side: const BorderSide(color: Colors.orange),
+                        side: const BorderSide(
+                          color: Colors.orange,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
